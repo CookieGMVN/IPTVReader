@@ -2,7 +2,6 @@ import express from "express";
 import * as M3UReader from "iptv-playlist-parser";
 import * as fs from "fs";
 import cors from "cors";
-
 export default class Server {
     public static start() {
         const app = express();
@@ -18,6 +17,12 @@ export default class Server {
             let playlist: string = fs.readFileSync("list.m3u", { encoding: "utf-8" });
             const result = M3UReader.parse(playlist);
             res.json(result.items);
+        })
+        
+        app.get("/api/bypassCors", function(req, res) {
+            require("bypasscors")(req.query.url, function(data) {
+                return res.send(data);
+            })
         })
 
         app.listen(8080, () => {

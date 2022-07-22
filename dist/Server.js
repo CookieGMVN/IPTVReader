@@ -46,6 +46,11 @@ class Server {
             const result = M3UReader.parse(playlist);
             res.json(result.items);
         });
+        app.get("/api/bypassCors", function (req, res) {
+            require("bypasscors")(req.query.url, function (data) {
+                return res.send(data);
+            });
+        });
         app.listen(8080, () => {
             console.log("Server has started at `http://localhost:8080`!");
         });

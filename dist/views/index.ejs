@@ -43,7 +43,7 @@
                 let channelsData = await fetch('/api/getChannels').then(async response => await response.json());
                 channelsData.forEach((val) => {
                     $("#channelList").append(`
-                <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;" value="${val.url}">
+                <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;" value="/api/bypassCors${val.url}">
                     ${val.name}
                 </button>
                 `)
@@ -52,8 +52,6 @@
         function changeChannel(data) {
             window.location = "/?path=" + $(data).val();
         }
-        $("#channelList[value='<%= url %>']").removeClass("btn-primary");
-        $("#channelList[value='<%= url %>']").addClass("btn-danger");
     </script>
 </body>
 

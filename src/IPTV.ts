@@ -9,7 +9,7 @@ class IPTV {
             if (process.argv[2] == "--download") {
                 if (process.argv.length < 4) {
                     console.log("Missing URL to download. Using default URL...");
-                    Downloader.download("https://raw.githubusercontent.com/Folody-Team/fuko-tv/main/fukotv.m3u");
+                    Downloader.download("https://raw.githubusercontent.com/nzkfld-iptv/iptv/main/index.m3u");
                 }
                 else {
                     const url = process.argv[3];

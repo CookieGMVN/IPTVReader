@@ -8,21 +8,15 @@ export default class Server {
         app.set("view engine", "ejs");
         app.use(cors());
 
-        app.get("/", async function(req, res) {
+        app.get("/", async function (req, res) {
             if (!req.query.path) res.render("index.ejs", { url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" });
             else res.render("index.ejs", { url: req.query.path });
         })
 
-        app.get("/api/getChannels", function(req, res) {
+        app.get("/api/getChannels", function (req, res) {
             let playlist: string = fs.readFileSync("list.m3u", { encoding: "utf-8" });
             const result = M3UReader.parse(playlist);
             res.json(result.items);
-        })
-        
-        app.get("/api/bypassCors", function(req, res) {
-            require("bypasscors")(req.query.url, function(data) {
-                return res.send(data);
-            })
         })
 
         app.listen(8080, () => {

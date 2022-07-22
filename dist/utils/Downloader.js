@@ -32,7 +32,7 @@ class Downloader {
             res.pipe(file);
             file.on("finish", () => {
                 file.close();
-                console.log("Download completed. Please use `npm start --web` to run player!");
+                console.log("Download completed. Please use `npm start -- --web` to run player!");
             });
         });
     }

@@ -102,4 +102,4 @@ typings/
 # TernJS port file
 .tern-port
 
-dist/*.m3u
+*.m3u

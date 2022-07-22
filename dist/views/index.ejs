@@ -14,7 +14,7 @@
 <body>
     <h1>IPTVReader - Web Interface</h1>
     <div class="">
-        <video id="videoPlayer" controls autoplay class="container-fluid video-js" data-setup='{"controls": true, "autoplay": false}'>
+        <video id="videoPlayer" controls autoplay class="container-fluid video-js" data-setup='{"controls": true, "autoplay": false, "crossOrigin": "Anonymous"}' crossorigin="Anonymous">
             <source id="videoSrc" src="<%= url %>" type="application/x-mpegURL">
         </video>
     </div>
@@ -37,13 +37,15 @@
         <script src="https://vjs.zencdn.net/7.20.1/video.min.js"></script>
     <script>
             (function(){
-                videojs("#videoPlayer");
+                videojs("#videoPlayer", {
+
+                });
             })();
             (async () => {
                 let channelsData = await fetch('/api/getChannels').then(async response => await response.json());
                 channelsData.forEach((val) => {
                     $("#channelList").append(`
-                <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;" value="/api/bypassCors${val.url}">
+                <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;" value="${val.url}">
                     ${val.name}
                 </button>
                 `)

@@ -13,21 +13,50 @@
 
 <body>
     <h1>IPTVReader - Web Interface</h1>
-    <p>Note: Please install <a href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc">this</a> extension to disable CORS (Cross-Origin Resource Sharing). Disable CORS will make this website can play all your channels.</p>
+    <p>Note: Please install <a
+            href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc">this</a>
+        extension to disable CORS (Cross-Origin Resource Sharing). Disable CORS will make this website can play all your
+        channels.</p>
     <div class="">
-        <video id="videoPlayer" controls autoplay class="container-fluid video-js" data-setup='{"controls": true, "autoplay": false}'>
+        <video id="videoPlayer" controls autoplay class="container-fluid video-js"
+            data-setup='{"controls": true, "autoplay": false}'>
             <source id="videoSrc" src="<%= url %>" type="application/x-mpegURL">
         </video>
-    </div>
-    Channel List:<br>
-    <div class="container" id="channelList">
+    </div><br>
+    <p class="mx-auto text-center">Channel List (TEST):</p>
+    <div class="container">
+        <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
+            value="https://nezukobot.vn/iptv/bgirls/18plus_chunk_list.m3u8">
+            Beautiful Anime & Real Girls (12+) (SD)
+        </button>
         <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
             value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
-            Test (Big Buck Bunny)
+            Big Buck Bunny (FHD)
+        </button>
+        <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
+            value="https://nezukobot.vn/iptv/Nyanpasu/nyanpasu_chunk_list.m3u8">
+            Nyanpasu Remix (FHD)
+        </button>
+        <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
+            value="https://nezukobot.vn/iptv/NVGNGYU/nvgngyu_chunk_list.m3u8">
+            NVGNGYU (FHD 60fps)
+        </button>
+        <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
+            value="https://nezukobot.vn/iptv/Popping/nhaypopping_chunk_list.m3u8">
+            Popping Dance (FHD)
+        </button>
+        <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;"
+            value="https://nezukobot.vn/iptv/florentino/florentino_chunk_list.m3u8">
+            Popping Dance (FHD 60fps)
         </button>
     </div>
-    <footer>
-        This project use cdnjs to serve the libraries. Made with ❤️ by <a href="https://github.com/CookieGMVN">CookieGMVN</a>. This project's <a href="https://github.com/CookieGMVN/IPTVReader">GitHub</a>
+    <p class="mx-auto text-center">Channel List (Your List):</p>
+    <div class="container" id="channelList">
+    </div>
+    <footer class="mx-auto text-center">
+        This project use cdnjs to serve the libraries. Made with ❤️ by <a
+            href="https://github.com/CookieGMVN">CookieGMVN</a>. This project's <a
+            href="https://github.com/CookieGMVN/IPTVReader">GitHub</a>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -35,23 +64,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-        <script src="https://vjs.zencdn.net/7.20.1/video.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.20.1/video.min.js"></script>
     <script>
-            (function(){
-                videojs("#videoPlayer", {
+        (function () {
+            videojs("#videoPlayer", {
 
-                });
-            })();
-            (async () => {
-                let channelsData = await fetch('/api/getChannels').then(async response => await response.json());
-                channelsData.forEach((val) => {
-                    $("#channelList").append(`
+            });
+        })();
+        (async () => {
+            let channelsData = await fetch('/api/getChannels').then(async response => await response.json());
+            channelsData.forEach((val) => {
+                $("#channelList").append(`
                 <button class="btn btn-primary" onclick="changeChannel(this)" style="margin-top: 5px;" value="${val.url}">
                     ${val.name}
                 </button>
                 `)
-                })
-            })();
+            })
+        })();
         function changeChannel(data) {
             window.location = "/?path=" + $(data).val();
         }

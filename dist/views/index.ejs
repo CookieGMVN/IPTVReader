@@ -13,6 +13,7 @@
 
 <body>
     <h1>IPTVReader - Web Interface</h1>
+    <p>Note: Please install <a href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc">this</a> extension to disable CORS (Cross-Origin Resource Sharing). Disable CORS will make this website can play all your channels.</p>
     <div class="">
         <video id="videoPlayer" controls autoplay class="container-fluid video-js" data-setup='{"controls": true, "autoplay": false, "crossOrigin": "Anonymous"}' crossorigin="Anonymous">
             <source id="videoSrc" src="<%= url %>" type="application/x-mpegURL">

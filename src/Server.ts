@@ -14,9 +14,14 @@ export default class Server {
         })
 
         app.get("/api/getChannels", function (req, res) {
-            let playlist: string = fs.readFileSync("list.m3u", { encoding: "utf-8" });
-            const result = M3UReader.parse(playlist);
-            res.json(result.items);
+            if (fs.existsSync("list.m3u")) {
+                let playlist: string = fs.readFileSync("list.m3u", { encoding: "utf-8" });
+                const result = M3UReader.parse(playlist);
+                res.json(result.items);
+            }
+            else {
+                res.json([]);
+            }
         })
 
         app.listen(8080, () => {

@@ -1,6 +1,7 @@
 import Downloader from "./utils/Downloader";
 import Reader from "./utils/Reader";
 import Server from "./Server";
+import fs from "fs";
 
 class IPTV {
     public start() {
@@ -23,6 +24,9 @@ class IPTV {
             }
             if (process.argv[2] == "--web") {
                 console.log("Starting Server...");
+                if (!fs.existsSync("list.m3u")) {
+                    console.log("Playlist not found. The web will run without your channels.");
+                }
                 Server.start();
             }
             if (process.argv[2] == "--read") {

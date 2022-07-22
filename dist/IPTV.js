@@ -14,7 +14,7 @@ class IPTV {
             if (process.argv[2] == "--download") {
                 if (process.argv.length < 4) {
                     console.log("Missing URL to download. Using default URL...");
-                    Downloader_1.default.download("https://raw.githubusercontent.com/Folody-Team/fuko-tv/main/fukotv.m3u");
+                    Downloader_1.default.download("https://hieudev10.vercel.app/api/iptv/getsource/?username=nezukobotteam&password:banhdepzai");
                 }
                 else {
                     const url = process.argv[3];

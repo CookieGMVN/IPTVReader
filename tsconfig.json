@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "incremental": false,
+      "target": "esnext",
+      "lib": [
+        "ESNext",
+        "ESNext.Promise",
+        "ESNext.AsyncIterable"
+      ],
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "module": "CommonJS",
+      "rootDir": "src",
+      "resolveJsonModule": true,
+      "moduleResolution": "node",
+      "outDir": "dist",
+      "removeComments": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noImplicitAny": false,
+      "strictNullChecks": false,
+      "noImplicitThis": true,            
+      "useUnknownInCatchVariables": true,
+      "alwaysStrict": true,
+      "skipDefaultLibCheck": true,
+      "skipLibCheck": true,
+    },
+    "include": ["src/**/*"],
+  }
